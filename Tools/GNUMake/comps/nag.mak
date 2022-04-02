@@ -64,8 +64,8 @@ endif
 
 CFLAGS   += -std=gnu99
 
-FFLAGS   += -mismatch
-F90FLAGS += -mismatch -u
+FFLAGS   += -mismatch -Wc=`which gcc`
+F90FLAGS += -mismatch -u -Wc=`which gcc` -fpp
 
 FMODULES = -mdir $(fmoddir) -I $(fmoddir)
 
