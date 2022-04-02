@@ -51,7 +51,7 @@ all: $(amrexlib)
 .PHONY: distclean install uninstall
 
 distclean: realclean
-	$(SILENT) $(RM) GNUmakefile
+	$(SILENT) $(RM) -rf GNUmakefile InstallDir
 
 install: install_lib install_headers install_fortran_modules install_pkg_config
 
