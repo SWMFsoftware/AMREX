@@ -47,7 +47,7 @@ ifeq ($(USE_MPI),TRUE)
      mpi_link_flags  := $(shell $(MPI_OTHER_COMP) -link_info)
      mpicxx_link_libs := $(filter -l%,$(shell mpicxx -link_info))
   else
-     $(error Unknown mpi wrapper.  You can try setting MPI stuff in amrex/Tools/GNUMake/Make.local and then compile with NO_MPI_CHECKING=TRUE.)
+     $(warning Unknown mpi wrapper.  You can try setting MPI stuff in amrex/Tools/GNUMake/Make.local and then compile with NO_MPI_CHECKING=TRUE.)
   endif
 
   # some compilers return the compiler command as part of the link line info.
