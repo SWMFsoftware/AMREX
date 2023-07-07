@@ -174,7 +174,7 @@ def configure(argv):
                args.enable_hdf5 = "no"
 
     if args.enable_hdf5 == "yes":               
-        f.write("USE_HDF = {}\n".format("FALSE" if args.enable_hdf5 == "no" else "TRUE"))
+        f.write("USE_HDF5 = {}\n".format("FALSE" if args.enable_hdf5 == "no" else "TRUE"))
         f.write("HDF5_HOME = {}\n".format(h5path))
     #==============HDF5==================
     
