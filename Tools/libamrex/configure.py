@@ -2,6 +2,8 @@
 
 import sys
 import argparse
+import shutil
+import os
 
 def configure(argv):
     argv[0] = "configure" # So the help message print it
@@ -116,6 +118,10 @@ def configure(argv):
                         help="Only relevant to Amr/AmrLevel based codes that need to read probin file or call amrex_probinit",
                         choices=["yes","no"],
                         default="yes")
+    parser.add_argument("--enable-hdf5",
+                        help="Enable HDF5 [default=yes]",
+                        choices=["yes","no"],
+                        default="yes")    
     args = parser.parse_args()
 
     if args.with_fortran == "no":
@@ -154,6 +160,24 @@ def configure(argv):
     f.write("USE_COMPILE_PIC = {}\n".format("FALSE" if args.enable_pic == "no" else "TRUE"))
     f.write("CUDA_ARCH = " + args.cuda_arch.strip() + "\n")
     f.write("AMREX_NO_PROBINIT = {}\n".format("TRUE" if args.enable_probinit == "no" else "FALSE"))
+
+    #==============HDF5==================
+    if args.enable_hdf5 == "yes":
+       h5path= shutil.which("h5pcc")
+       if h5path is None:
+           args.enable_hdf5 = "no"
+       else:
+           # h5path = /path/to/hdf5/bin/h5pcc
+           # remove '/bin/h5pcc'           
+           h5path=h5path[:-10]
+           if not os.path.exists(h5path+"/include/hdf5.h"):
+               args.enable_hdf5 = "no"
+
+    if args.enable_hdf5 == "yes":               
+        f.write("USE_HDF = {}\n".format("FALSE" if args.enable_hdf5 == "no" else "TRUE"))
+        f.write("HDF5_HOME = {}\n".format(h5path))
+    #==============HDF5==================
+    
     f.write("\n")
 
     fin = open("GNUmakefile.in","r")
