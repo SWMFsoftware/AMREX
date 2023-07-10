@@ -119,7 +119,7 @@ def configure(argv):
                         choices=["yes","no"],
                         default="yes")
     parser.add_argument("--enable-hdf5",
-                        help="Enable HDF5 [default=yes]",
+                        help="Enable HDF5 [default=no]",
                         choices=["yes","no"],
                         default="yes")    
     args = parser.parse_args()
