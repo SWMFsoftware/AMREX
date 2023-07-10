@@ -121,7 +121,7 @@ def configure(argv):
     parser.add_argument("--enable-hdf5",
                         help="Enable HDF5 [default=no]",
                         choices=["yes","no"],
-                        default="yes")    
+                        default="no")    
     args = parser.parse_args()
 
     if args.with_fortran == "no":
