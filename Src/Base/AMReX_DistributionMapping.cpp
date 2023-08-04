@@ -1084,7 +1084,7 @@ Distribute (const std::vector<SFCToken>&     tokens,
 void
 DistributionMapping::SFCProcessorMapDoIt (const BoxArray&          boxes,
                                           const std::vector<Long>& wgts,
-                                          int                   /*   nprocs */,
+                                          int                    nprocs,
                                           bool                     sort,
                                           Real*                    eff)
 {
@@ -1094,7 +1094,7 @@ DistributionMapping::SFCProcessorMapDoIt (const BoxArray&          boxes,
 
     BL_PROFILE("DistributionMapping::SFCProcessorMapDoIt()");
 
-    int nprocs = ParallelContext::NProcsSub();
+    //int nprocs = ParallelContext::NProcsSub();
 
     int nteams = nprocs;
     int nworkers = 1;
