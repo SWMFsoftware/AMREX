@@ -1,5 +1,4 @@
-InstallDir3D
-InstallDir2D
+InstallDir*
 GNUmakefile
 nohup.out
 *.[oa]
